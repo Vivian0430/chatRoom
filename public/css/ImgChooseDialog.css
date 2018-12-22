@@ -1,0 +1,129 @@
+.ImgChooseDialog {
+    width: 255px;
+    height: 155px;
+    border: 1px solid #eaeaea;
+    padding-right: 20px;
+    position: absolute;
+    top: -155px;
+    background-color: #FFF;
+	display: none;
+}
+
+.ImgChooseDialog  .faceImg {
+	width: 64px;
+	height: 60px;
+	float: left;
+	border:1px solid #ccc;
+	background-image: url(../images/faces.jpg);
+	transform: scale(0.5);
+	margin-right: -32px;
+	margin-bottom: -32px;
+
+}
+
+.ImgChooseDialog  .faceImg:hover {
+	border:1px solid #eaeaea;
+	cursor: pointer;
+}
+
+.a1 {
+	background-position: 0px 0px;
+}
+
+.a2 {
+	background-position: -64px 0px;
+}
+
+.a3 {
+	background-position: -128px 0px;
+}
+.a4 {
+	background-position: -192px 0px;
+}
+
+.a5 {
+	background-position: -256px 0px;
+}
+
+.a6 {
+	background-position: -320px 0px;
+}
+.a7 {
+	background-position: 384px 0px;
+}
+
+.b1 {
+	background-position: 0px -64px;
+}
+
+.b2 {
+	background-position: -64px -64px;
+}
+
+.b3 {
+	background-position: -128px -64px;
+}
+.b4 {
+	background-position: -192px -64px;
+}
+
+.b5 {
+	background-position: -256px -64px;
+}
+
+.b6 {
+	background-position: -320px -64px;
+}
+.b7 {
+	background-position: 384px -64px;
+}
+.c1 {
+	background-position: 0px -128px;
+}
+
+.c2 {
+	background-position: -64px -128px;
+}
+
+.c3 {
+	background-position: -128px -128px;
+}
+.c4 {
+	background-position: -192px -128px;
+}
+
+.a5 {
+	background-position: -256px -128px;
+}
+
+.c6 {
+	background-position: -320px -128px;
+}
+.c7 {
+	background-position: 384px -128px;
+}
+.d1 {
+	background-position: 0px -185px;
+}
+
+.d2 {
+	background-position: -64px -185px;
+}
+
+.d3 {
+	background-position: -128px -185px;
+}
+.d4 {
+	background-position: -192px -185px;
+}
+
+.d5 {
+	background-position: -256px -185px;
+}
+
+.d6 {
+	background-position: -320px -185px;
+}
+.d7 {
+	background-position: 384px -185px;
+}

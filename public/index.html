@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="css/index.css">
+	<link rel="stylesheet" href="css/ImgChooseDialog.css">
+	<link rel="stylesheet" href="https://at.alicdn.com/t/font_969563_nj0s61i3arj.css">
+	<link rel="stylesheet" type="text/css" href="layui-v2.4.5\layui\css\layui.css">
+	<script src="jquery.min.js"></script>
+	<script type="text/javascript" src="layui-v2.4.5\layui\layui.js"></script>
+	<title>chatroom</title>
+</head>
+<body>
+    <h3 style="text-align: center;margin: 20px 0;">welcome to chatroom!</h3>
+    <div class="content">
+		<div class='cleft'>
+			<div class="header"><i class="iconfont icon-yonghutouxiang"></i>&nbsp;用户列表</div>
+			<div class="userList"></div>
+			
+		</div>
+		<div class="cright">
+		<div class='cright_top'></div>
+		<div class="cright_bottom">
+			<div class="tool">
+				<div class="tool-item"><i class='iconfont icon-tupian'></i></div>
+				<div class="tool-item"><i  id="biaoqing" class='iconfont icon-biaoqing2'></i></div>
+				<div class="tool-item">
+					<div class="layui-inline">
+				        <div id="colorpicker"></div>
+				      </div>
+				</div>
+				<!--表情的选择框-->
+				<div class="ImgChooseDialog">		
+					<span class="faceImg a1"></span>
+					<span class="faceImg a2"></span>
+					<span class="faceImg a3"></span>
+					<span class="faceImg a4"></span>
+					<span class="faceImg a5"></span>
+					<span class="faceImg a6"></span>
+					<span class="faceImg a7"></span>
+
+
+					<span class="faceImg b1"></span>
+					<span class="faceImg b2"></span>
+					<span class="faceImg b3"></span>
+					<span class="faceImg b4"></span>
+					<span class="faceImg b5"></span>
+					<span class="faceImg b6"></span>
+					<span class="faceImg b7"></span>
+
+					<span class="faceImg c1"></span>
+					<span class="faceImg c2"></span>
+					<span class="faceImg c3"></span>
+					<span class="faceImg c4"></span>
+					<span class="faceImg c5"></span>
+					<span class="faceImg c6"></span>
+					<span class="faceImg c7"></span>
+
+					<span class="faceImg d1"></span>
+					<span class="faceImg d2"></span>
+					<span class="faceImg d3"></span>
+					<span class="faceImg d4"></span>
+					<span class="faceImg d5"></span>
+					<span class="faceImg d6"></span>
+					<span class="faceImg d7"></span>
+				</div>
+			</div>
+            <textarea class="inputArea"> </textarea>
+			<button name="sendMsg" id="sendMsg">send</button>
+		</div>
+		</div>
+    </div>
+</body>
+</html>
+<script>
+
+function html_decode(str) 
+{ 
+var s = ""; 
+if (str.length == 0) return ""; 
+s = str.replace(/&gt;/g, ">"); 
+s = s.replace(/&lt;/g, "<"); 
+s = s.replace(/&gt;/g, ">"); 
+s = s.replace(/&nbsp;/g, " "); 
+s = s.replace(/&#39;/g, "\'"); 
+s = s.replace(/&quot;/g, "\""); 
+s = s.replace(/<br>/g, "\n"); 
+return s; 
+}
+
+	var isOpen = false;
+
+	    $("#biaoqing").click(function(){
+	    	if(isOpen == false){
+           $(".ImgChooseDialog").eq(0).fadeIn();
+           isOpen = true;
+		  }
+		else{
+		   $(".ImgChooseDialog").eq(0).fadeOut();
+		   isOpen = false;
+		}
+	}) 
+
+	    //首次加载用户列表
+	    function loadUsers(){
+			$.get("/getAllUsers.do",{},function(data){
+				//console.log(data);
+				var html = "";
+				for(var key in data){
+					html += "<div class=\"user isLogin\">"+data[key].nickname+"</div>";
+				}
+
+				$(".userList").html(html);
+
+			},"json");
+		}
+
+
+		var isMouseOver = false;
+		$(".cright_top").on("mouseover",function(){
+			isMouseOver = true;
+		});
+
+		$(".cright_top").on("mouseout",function(){
+			isMouseOver = false;
+		});
+
+		var color = "#222";
+
+		function loadChatList(){
+			$.get("/getChatList.do",{},function(data){
+				// console.log(data);
+				var html = "";
+				for(var i=0;i < data.length;i++){
+					html += "<div class=\"chat\">"+
+							"	<div class='header'>"+
+							"		<span class=\"nickname\">"+data[i].nickname+"</span>"+
+							"		<span class=\"sendDate\">"+data[i].sendDate+"</span>"+
+							"	</div>"+
+							"	<div style='color:#"+data[i].color+"' class=\"message\">"+
+							data[i].message+
+							"	</div>"+
+							"</div>";
+				}
+
+				
+			    var html = html_decode(html);
+			  //  console.log(html);
+			    // console.log(html_decode("&nbsp;&lt;span&nbsp;class=&quot;faceImg&nbsp;d2&quot;&gt;&lt;/span&gt;"));
+
+				$(".cright_top").html(html);
+
+				if(!isMouseOver)
+					$(".cright_top").scrollTop($(".cright_top")[0].scrollHeight);
+
+			},"json");
+		}
+
+		//给图标做事件绑定
+		$(".faceImg").click(function(){
+			//console.log("xxx");
+            var faceImg = $(this).get(0).outerHTML;
+            $(".inputArea").eq(0).val($(".inputArea").eq(0).val() + faceImg);
+            $(".ImgChooseDialog").eq(0).hide();
+		})
+
+		//发送消息
+		$("#sendMsg").click(function(){
+			var message = $(".inputArea").eq(0).val();
+			if(!message.trim()){
+               console.log("消息为空，不允许发送");
+               return;
+			}
+
+			color = color.replace("#","");
+			$.get("/send.do?message="+ message + "&color=" + color,{},function(data){
+               if(data != "success"){
+                  return;
+               }
+               else{
+               	console.log("消息发送成功！");
+				$(".inputArea").eq(0).val('');
+				loadChatList();
+               }
+			},'text')
+		})
+
+		var timer = setInterval(function(){
+
+			loadUsers();
+		    loadChatList();
+
+		}, 1000);
+		loadUsers();
+	    loadChatList();
+
+
+	    layui.use('colorpicker', function(){
+		  var colorpicker = layui.colorpicker;
+		  //渲染
+		  colorpicker.render({
+		    elem: '#colorpicker' , //绑定元素
+		    color: '#313633' , //设置默认色
+		    done : function(color){
+		    	window.color = color;
+		    }
+		  });
+		});
+</script>

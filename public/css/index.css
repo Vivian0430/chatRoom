@@ -1,0 +1,150 @@
+*{
+	padding: 0;
+	margin: 0;
+}
+body{
+	font-family: '微软雅黑' !important;
+}
+.content{
+	border: 1px solid #eee;
+	width: 800px;
+	height: 500px;
+	margin: 0 auto;
+	position: relative;
+}
+.cleft{
+	border-right: 1px solid #eaeaea;
+	width: 200px;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+.cleft .header{
+    font-size: 16px;
+    background-color: #2d80e0;
+    text-align: center;
+    color: #fff;
+    height: 40px;
+    line-height: 40px;
+}
+.cleft .userList{
+    font-size: 15px;
+    height: 460px;
+    width: 100%;
+	overflow-y: auto;
+	overflow-x:hidden;
+}
+.cleft .userList .user{
+    height: 30px;
+    line-height: 30px;
+    width: 100%;
+    color: red;
+    cursor: pointer;
+    margin-left: 15px;
+    text-overflow: ellipsis;
+}
+.isLogin{
+	color: #aaa;
+}
+.cright{
+	width: 600px;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+.cright_top{
+	border-bottom: 1px solid #eaeaea;
+	width: 100%;
+	height: 340px;
+	overflow-y: auto;
+	word-wrap: break-word;
+}
+.cright_bottom{
+	width: 100%;
+	height: 160px;
+	position: relative;
+}
+.cright_bottom .tool{
+   width: 100%;
+   height: 30px;
+   background-color:#eee;
+}
+.cright_bottom .tool .tool-item{
+   width: 40px;
+   height: 30px;
+   float: left;
+   text-align: center;
+   line-height: 30px;
+   position: relative;
+}
+.cright_bottom .tool .tool-item i{
+   font-size: 20px;
+   cursor: pointer;
+}
+.cright_bottom .inputArea{
+	width: 100%;
+	height: 130px;
+	overflow-x: hidden;
+	overflow-y: auto;
+	word-wrap: break-word;
+	outline: none;
+	border-color: #eaeaea;
+}
+.cright_bottom button{
+	position: absolute;
+	background-color: #2d80e0;
+	border: none;
+	outline: none;
+	color: #fff;
+    right: 20px;
+    bottom: 20px;
+    width: 40px;
+    height: 25px;
+    cursor: pointer;
+}
+
+.message{
+	margin-bottom: 20px;
+	margin-top: 5px;
+	margin-left: 5px;
+	font-size: 15px;
+}
+
+
+.cright_top .faceImg {
+	width: 60px;
+	height: 60px;
+	display: inline-block;
+	background-image: url(../images/faces.jpg);
+	transform: scale(0.5);
+	margin: -16px -15px;
+}
+.sendDate{
+	color: #aaa;
+	font-size: 12px;
+	margin-left: 10px;
+}
+
+.layui-colorpicker {
+    width: 20px !important;
+    height: 18px !important;
+    border:none !important;
+    line-height:18px !important;
+    margin-bottom: 3px; 
+}
+.layui-icon{
+	font-size: 14px !important;
+}
+/** 滚动条样式美化  */
+::-webkit-scrollbar{width:5px;height:6px;background:#ccc;}
+::-webkit-scrollbar-button{background-color:#e5e5e5;}
+::-webkit-scrollbar-track{background:#999;}
+::-webkit-scrollbar-track-piece{background:#ccc}
+::-webkit-scrollbar-thumb{background:#666;}
+::-webkit-scrollbar-corner{background:#82AFFF;}
+::-webkit-scrollbar-resizer{background:#FF0BEE;}
+scrollbar{-moz-appearance:none !important;background:rgb(0,255,0) !important;}
+scrollbarbutton{-moz-appearance:none !important;background-color:rgb(0,0,255) !important;}
+scrollbarbutton:hover{-moz-appearance:none !important;background-color:rgb(255,0,0) !important;}
