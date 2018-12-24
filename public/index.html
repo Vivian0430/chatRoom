@@ -132,6 +132,11 @@ return s;
 				// console.log(data);
 				var html = "";
 				for(var i=0;i < data.length;i++){
+
+                    if(data[i].nickname == '小冰'){
+						data[i].nickname = "<span style='display:inline-block;padding:2px 4px;color:#fff;background:#2d80e0;'>"+data[i].nickname+"</span>";
+					}
+
 					html += "<div class=\"chat\">"+
 							"	<div class='header'>"+
 							"		<span class=\"nickname\">"+data[i].nickname+"</span>"+
@@ -180,6 +185,16 @@ return s;
                else{
                	console.log("消息发送成功！");
 				$(".inputArea").eq(0).val('');
+
+                if(message.indexOf("@小冰") != -1){
+					$.getJSON('http://www.tuling123.com/openapi/api?key=5af59a86af4144adaf992e03287751b0&info=' + message.replace('@小冰',''),function(data){
+					 
+					 	$.get("/send.do?message=" + data.text + "&isRobot=true" ,{},function(data){});	
+					  
+					});
+
+				}
+
 				loadChatList();
                }
 			},'text')

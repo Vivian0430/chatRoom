@@ -38,10 +38,9 @@ body{
 .cleft .userList .user{
     height: 30px;
     line-height: 30px;
-    width: 100%;
-    color: red;
+    width: 90%;
+    margin-left: 10%;
     cursor: pointer;
-    margin-left: 15px;
     text-overflow: ellipsis;
 }
 .isLogin{

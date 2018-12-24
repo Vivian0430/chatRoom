@@ -25,7 +25,11 @@ return s;
 
 
 
-var users ={};
+var users ={
+    "robot" : {
+    	nickname : "小冰"
+    }
+};
 
 // var facesMap = {
 // 	"{emoj:a1}" : "<span class=\"faceImg a1\"></span>" ,
@@ -142,12 +146,16 @@ app.get("/getChatList.do",function(req,res){
 app.get("/send.do",function(req,res){
     var message = url.parse(req.url,true).query.message;
     var color = url.parse(req.url,true).query.color;
+    var isRobot = url.parse(req.url,true).query.isRobot;
     console.log(message);
     var ip = req.connection.remoteAddress.split(":")[3];
-
+     
     if(!users[ip]){
 		res.sendFile(__dirname + "/public/login.html");
 		return;
+	}
+	if(isRobot){
+		ip = 'robot';
 	}
 	message = html_encode(message);
 	// for(var key in facesMap){
